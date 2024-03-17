@@ -16,7 +16,7 @@ if (confirmacionFecha !== fechaRegistro) {
 
 alert("Comencemos con el ingreso de stock inicial")
 
-let cantidadInicial = [];
+let coloresInicial = [];
 let colorContadorIniciales = {};
 let colorTotalesIniciales = {};
 
@@ -24,7 +24,7 @@ let categoriaColorAgregado;
 let cantidadColorAgregado;
 
     do {
-    categoriaColorAgregado = prompt("Ingresá el color que querés registrar, en letras minúsculas y sin tildes. Para terminar, escribí \"SALIR\".");
+    categoriaColorAgregado = (prompt("Ingresá el color que querés registrar, en letras minúsculas y sin tildes. Para terminar, escribí \"SALIR\"."));
 
     if (categoriaColorAgregado.toUpperCase() !== "SALIR") {
         cantidadColorAgregado = parseInt(prompt("Ingresá la cantidad en stock que querés registrar, sin comas ni puntos."));
@@ -33,7 +33,7 @@ let cantidadColorAgregado;
             color: categoriaColorAgregado,
             cantidad: cantidadColorAgregado
         }
-        cantidadInicial.push(colorAgregado);
+        coloresInicial.push(colorAgregado);
 
         if (colorContadorIniciales[categoriaColorAgregado]) {
             colorTotalesIniciales[categoriaColorAgregado] += cantidadColorAgregado;
@@ -49,14 +49,70 @@ let cantidadColorAgregado;
     }
 
 
+
+
 } while(categoriaColorAgregado.toUpperCase() !== "SALIR");
 
 function calcularTotalCantidadesEnStock() {
-    return cantidadInicial.reduce((acc, color) => acc + color.cantidad, 0);
+    return coloresInicial.reduce((acc, color) => acc + color.cantidad, 0);
 }
 
-console.log("Cantidad inicial en stock: ", cantidadInicial);
+console.log("Cantidad inicial en stock: ", coloresInicial);
 console.log("Stock total disponible: ", calcularTotalCantidadesEnStock ());
 console.log("Cantidad de veces que se ingreso cada color: ", colorContadorIniciales);
 console.log("Cantidad por color: ", colorTotalesIniciales);
 
+alert("Continuemos con las cantidades de color vendidas en la semana")
+
+let cantidadVendida = [];
+let colorContadorVendido = {};
+let colorTotalesVendido = {};
+
+
+let categoriaColorVendido;
+let cantidadColorVendido;
+
+    do {
+    categoriaColorVendido = prompt("Ingresá el color que querés registrar, en letras minúsculas y sin tildes. Para terminar, escribí \"SALIR\".");
+
+    if (categoriaColorVendido.toUpperCase() !== "SALIR") {
+        cantidadColorVendido = parseInt(prompt("Ingresá la cantidad vendida en la semana que querés registrar, sin comas ni puntos."));
+    
+        let colorVendido = {
+            color: categoriaColorVendido,
+            cantidad: cantidadColorVendido
+        }
+        cantidadVendida.push(colorVendido);
+
+        if (colorContadorVendido[categoriaColorVendido]) {
+            colorTotalesVendido[categoriaColorVendido] += cantidadColorVendido;
+        } else {
+            colorTotalesVendido[categoriaColorVendido] = cantidadColorVendido;
+        }
+
+        if (colorContadorVendido[categoriaColorVendido]) {
+            colorContadorVendido[categoriaColorVendido]++;
+        } else {
+            colorContadorVendido[categoriaColorVendido] = 1;
+        }
+    }
+
+} while(categoriaColorVendido.toUpperCase() !== "SALIR");
+
+function calcularCantidadesVendida() {
+    return cantidadVendida.reduce((acc, color) => acc + color.cantidad, 0);
+}
+
+console.log("Cantidad vendida: ", cantidadVendida);
+console.log("Total vendida: ", calcularCantidadesVendida ());
+console.log("Cantidad de veces que se vendió cada color: ", colorContadorVendido);
+console.log("Cantidad vendida de cada color: ", colorTotalesVendido);
+
+
+alert("Veamos cuanto nos queda esta semana... ")
+
+function stockDeLaSemana() {
+    return coloresInicial,cantidadVendida.reduce((acc, color) => (acc - color.cantidad), 0);
+}
+
+console.log("Cantidad final de cada color esta semana: ", stockDeLaSemana);
