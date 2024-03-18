@@ -108,11 +108,28 @@ console.log("Total vendida: ", calcularCantidadesVendida ());
 console.log("Cantidad de veces que se vendió cada color: ", colorContadorVendido);
 console.log("Cantidad vendida de cada color: ", colorTotalesVendido);
 
+//No me salio la parte de resta para obtener inventario final...
 
-alert("Veamos cuanto nos queda esta semana... ")
+// alert("Veamos cuanto nos queda esta semana... ")
 
-function stockDeLaSemana() {
-    return coloresInicial,cantidadVendida.reduce((acc, color) => (acc - color.cantidad), 0);
-}
 
-console.log("Cantidad final de cada color esta semana: ", stockDeLaSemana);
+
+// function stockDeLaSemana() {
+//     return coloresInicial,cantidadVendida.reduce((acc, color) => (acc - color.cantidad), 0);
+// }
+
+// console.log("Cantidad final de cada color esta semana: ", stockDeLaSemana);
+
+
+// const coloresDisponibles = colores.map((color) => color.cantidad);
+// console.log(coloresDisponibles);
+
+// const stockDeLaSemana = colores.map((color) => {
+//     return {
+//         color: coloresInicial.color - cantidadVendida.color,
+//         cantidadFinales: coloresInicial.cantidad - cantidadVendida.cantidad
+//     }
+// });
+
+// console.log(color);
+// console.log(cantidadFinales);
