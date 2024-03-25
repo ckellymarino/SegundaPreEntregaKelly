@@ -2,17 +2,25 @@ let inicio = alert("Buen día, bienvenido al control de stock semanal de Pintura
 
 let nomrbeUsuario = prompt("Ingrese por favor su nombre de usuario");
 console.log (nomrbeUsuario);
-let fechaRegistro = prompt("Ingrese por favor la fecha de registro del Stock en formato DD/MM/AA");
+let fechaRegistro = (prompt("Ingrese por favor la fecha de registro del Stock en formato DD/MM/AA"));
 
-let confirmacionFecha = prompt("La fecha ingresada es " + fechaRegistro + ". \n Si es correcta, coloquela nuevamente \n Si no es correcta, vuelva a ingresar la fecha. ");
 
-if (confirmacionFecha !== fechaRegistro) {
-        alert("La nueva fecha ingresada es " + confirmacionFecha)
-    } else alert ("La fecha ingresada es " + fechaRegistro);
+let isValidDate = Date.parse(fechaRegistro);
 
-    if (confirmacionFecha !== fechaRegistro) {
-        console.log(confirmacionFecha)
-    } else console.log (fechaRegistro);
+        if (isNaN(isValidDate)) {
+            alert("La fecha ingresada es incorrecta");
+            prompt("Ingrese por favor la fecha de registro del Stock en formato DD/MM/AA");
+        } else {
+            let confirmacionFecha = prompt("La fecha ingresada es " + fechaRegistro + ". \n Si es correcta, coloquela nuevamente \n Si no es correcta, vuelva a ingresar la fecha. ");
+
+                if (confirmacionFecha !== fechaRegistro) {
+                alert("La nueva fecha ingresada es " + confirmacionFecha)
+                } else alert ("La fecha ingresada es " + fechaRegistro);
+
+                if (confirmacionFecha !== fechaRegistro) {
+                console.log(confirmacionFecha)
+                } else console.log (fechaRegistro);
+        } 
 
 alert("Comencemos con el ingreso de stock inicial")
 
@@ -26,9 +34,11 @@ let cantidadColorAgregado;
     do {
     categoriaColorAgregado = (prompt("Ingresá el color que querés registrar, en letras minúsculas y sin tildes. Para terminar, escribí \"SALIR\"."));
 
+    
+
     if (categoriaColorAgregado.toUpperCase() !== "SALIR") {
         cantidadColorAgregado = parseInt(prompt("Ingresá la cantidad en stock que querés registrar, sin comas ni puntos."));
-    
+        
         let colorAgregado = {
             color: categoriaColorAgregado,
             cantidad: cantidadColorAgregado
@@ -47,9 +57,6 @@ let cantidadColorAgregado;
             colorContadorIniciales[categoriaColorAgregado] = 1;
         }
     }
-
-
-
 
 } while(categoriaColorAgregado.toUpperCase() !== "SALIR");
 
@@ -74,10 +81,9 @@ let cantidadColorVendido;
 
     do {
     categoriaColorVendido = prompt("Ingresá el color que querés registrar, en letras minúsculas y sin tildes. Para terminar, escribí \"SALIR\".");
-
-    if (categoriaColorVendido.toUpperCase() !== "SALIR") {
-        cantidadColorVendido = parseInt(prompt("Ingresá la cantidad vendida en la semana que querés registrar, sin comas ni puntos."));
     
+    if ((categoriaColorVendido) !== "") {
+        
         let colorVendido = {
             color: categoriaColorVendido,
             cantidad: cantidadColorVendido
